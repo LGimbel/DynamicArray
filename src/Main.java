@@ -17,6 +17,7 @@ public class Main {
             myArray.add(i);
         }
         myArray.printArray();
+        myArray.remove(1);
         System.out.println("\n\n");
         System.out.println(myArray.get(2));
 
@@ -117,6 +118,26 @@ class Array<E>{
     public Object get(int index){
         return dataArray[index];
     }
+    public void remove(int index){
+        if (index > size) {
+            throw new ArrayIndexOutOfBoundsException();
+    }
+        else {
+            Object[] tempArray = Arrays.copyOf(dataArray,dataArray.length);
+            Object[] newArray = new Object[dataArray.length - 1];
+
+            for (int i = 0; i < index; i++){
+                newArray[i] = tempArray[i];
+            }
+            for (int i = index; i < size-1; i++){
+                newArray[i] = tempArray[i+1];
+            }
+            size--;
+            currentRightMostItem--;
+            dataArray = newArray;
+        }
+
+        }
 
 }
 
